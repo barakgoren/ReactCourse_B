@@ -7,6 +7,7 @@ export default function Query() {
     <div className='container'>
         <h2>Query 1: {query.get('search')}</h2>
         <h2>Query 2: {query.get('search2')}</h2>
+        <h2>Query 2: {query.get('search2')}</h2>
     </div>
   )
 }
