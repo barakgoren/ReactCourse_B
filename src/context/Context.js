@@ -3,25 +3,27 @@ export const AppContext = createContext(null);
 
 
 export default function ContextProvider(props) {
-  const [counter, setCounter] = useState(99);
-  const [shop_ar, setShopAr] = useState([
-    {name:"milk",amount:3,id:1},
-    {name:"shoko",amount:2,id:2},
-    {name:"bamba",amount:5,id:3}
-  ])
+  const [students, setStudents] = useState([
+    {id: 1, name: "John Doe", score: 90},
+  ]);
 
-  const addProduct = (newItem) => {
-    setShopAr([...shop_ar,newItem]);
+  const addStudent = (student) => {
+    setStudents([...students, student]);
   }
 
-  // במשתנה מטה נכניס את כל המשתנים/
-  // פונקציות שנרצה שיהיו גלובליות
-  // וכאשר נעבוד מול רשימות במערך נעביר תמיד
-  // פונקציות ייעודיות ולא את פקודת הסט הרגילה
-  // כדי למנוע בהמשך בלגן במערך
+  const removeStudent = (id) => {
+    setStudents(students.filter((student) => student.id !== id));
+    console.log("inside removeStudent");
+  }
+
+  const editStudent = (id, newName, newScore) => {
+    setStudents(students.map((student) => 
+      student.id === id ? { ...student, name: newName, score: newScore } : student
+    ));
+  }
+
   const globalValue = {
-    counter,setCounter,
-    shop_ar, addProduct
+    students, addStudent, removeStudent, editStudent
   }
 
   return (
