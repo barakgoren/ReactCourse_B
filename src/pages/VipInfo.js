@@ -8,26 +8,27 @@ export default function VipInfo() {
   const nav = useNavigate();
 
   useEffect(() => {
+    const doApi = async() => {
+      const url = "http://fs1.co.il/bus/vip_big.php";
+      try {
+        setLoad(true)
+        // עם הצגת הטעינה גם יסתיר 
+        // את המידע שהיה קיים לפני על אותו אדם
+        setInfo({});
+        const resp = await fetch(url);
+        const data = await resp.json();
+        console.log(data);
+        const item = data.find(item => item.rank == params["rank"])
+        setInfo(item)
+        setLoad(false)
+      } catch (error) {
+        console.log(error);
+      }
+    }
     doApi();
   },[params])
 
-  const doApi = async() => {
-    const url = "http://fs1.co.il/bus/vip_big.php";
-    try {
-      setLoad(true)
-      // עם הצגת הטעינה גם יסתיר 
-      // את המידע שהיה קיים לפני על אותו אדם
-      setInfo({});
-      const resp = await fetch(url);
-      const data = await resp.json();
-      console.log(data);
-      const item = data.find(item => item.rank == params["rank"])
-      setInfo(item)
-      setLoad(false)
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  
 
 
 

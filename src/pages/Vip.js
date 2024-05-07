@@ -33,7 +33,7 @@ export default function Vip() {
         {vip_ar.map(item => {
           return (
             <div key={item.rank} className='col-md-6 border p-2'>
-              <img src={item.person.squareImage} className='float-start me-2 w-25' />
+              <img src={item.person.squareImage} className='float-start me-2 w-25' alt=''/>
               <h2>{item.personName}</h2>
               <div>Money: {item.finalWorth} M</div>
               <Link to={"/vip/"+item.rank}>More info </Link>

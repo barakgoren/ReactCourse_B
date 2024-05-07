@@ -13,23 +13,24 @@ export default function Pixa() {
     const pageQuery = params.get('p');
     const nav = useNavigate();
 
-    const doApi = async () => {
-        setIsLoading(true);
-        try {
-            let url = `https://pixabay.com/api/?key=31340567-8a6f928f251fdd2c3f0f43e20&q=${searchQuery}&page=${pageQuery}`;
-            let resp = await fetch(url);
-            let data = await resp.json();
-            console.log(data);
-            setImages(data.hits);
-            setIsLoading(false);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    
 
     useEffect(() => {
+        const doApi = async () => {
+            setIsLoading(true);
+            try {
+                let url = `https://pixabay.com/api/?key=31340567-8a6f928f251fdd2c3f0f43e20&q=${searchQuery}&page=${pageQuery}`;
+                let resp = await fetch(url);
+                let data = await resp.json();
+                console.log(data);
+                setImages(data.hits);
+                setIsLoading(false);
+            } catch (error) {
+                console.log(error);
+            }
+        }
         doApi();
-    }, [params]);
+    }, [params, pageQuery, searchQuery]);
 
     const handleSearch = (e) => {
         setSearchInput(e.currentTarget.value);
