@@ -4,7 +4,6 @@ export const AppContext = createContext(null);
 
 export default function ContextProvider(props) {
   const [students, setStudents] = useState([
-    {id: 1, name: "John Doe", score: 90},
   ]);
 
   const addStudent = (student) => {
