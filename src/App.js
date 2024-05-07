@@ -5,6 +5,7 @@ import Gallery from "./pages/Gallery";
 import Header1 from "./components/Header1";
 import Vip from "./pages/Vip";
 import VipInfo from "./pages/VipInfo";
+import Pixa from "./pages/Pixa";
 
 
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/vip" element={<Vip />} />
           <Route path="/vip/:rank" element={<VipInfo />} />
+          <Route path="/pixa" element={<Pixa />} />
         </Routes>
 
     </BrowserRouter>

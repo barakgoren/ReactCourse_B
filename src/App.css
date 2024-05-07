@@ -12,3 +12,27 @@ header nav ul a{
   padding:0 8px;
   text-decoration: none;
 }
+
+.arrows {
+  background-color: transparent;
+  border: none;
+}
+
+.arrows:hover {
+  cursor: pointer;
+  background-color: lightgrey;
+}
+
+.arrows:active {
+  background-color: grey;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+  
+}
