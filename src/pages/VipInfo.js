@@ -18,7 +18,7 @@ export default function VipInfo() {
         const resp = await fetch(url);
         const data = await resp.json();
         console.log(data);
-        const item = data.find(item => item.rank == params["rank"])
+        const item = data.find(item => item.rank === params["rank"])
         setInfo(item)
         setLoad(false)
       } catch (error) {
