@@ -8,6 +8,7 @@ export default function ContextProvider(props) {
 
   const addStudent = (student) => {
     setStudents([...students, student]);
+    localStorage.setItem('students', JSON.stringify([...students, student]));
   }
 
   useLayoutEffect(() => {
@@ -21,7 +22,9 @@ export default function ContextProvider(props) {
     let student = students.find((student) => student.id === id);
     let answer = window.confirm(`Are you sure you want to remove ${student.name} from the list?`);
     if (!answer) return;
-    setStudents(students.filter((student) => student.id !== id));
+    let listToSet = students.filter((student) => student.id !== id);
+    setStudents(listToSet);
+    localStorage.setItem('students', JSON.stringify(listToSet));
   }
 
   const globalValue = {
