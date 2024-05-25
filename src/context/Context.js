@@ -1,47 +1,36 @@
-import { createContext, useLayoutEffect, useState } from 'react'
+import { createContext, useLayoutEffect, useState } from "react";
 export const AppContext = createContext(null);
 
-export default function ContextProvider({ children }) {
-    const [todos_ar, setTodosAr] = useState([]);
-    const [showEdit, setShowEdit] = useState(false);
-    const [currentTodoEdit, setCurrentTodoEdit] = useState({});
 
-    useLayoutEffect(() => {
-        const todosFromLocalStorage = localStorage.getItem('todos_ar');
-        if (todosFromLocalStorage) {
-            setTodosAr(JSON.parse(todosFromLocalStorage))
-        }
-    }, [])
+export default function ContextProvider(props) {
+  const [students, setStudents] = useState([
+  ]);
 
-    const toggleEdit = () => {
-        setShowEdit(!showEdit)
+  const addStudent = (student) => {
+    setStudents([...students, student]);
+  }
+
+  useLayoutEffect(() => {
+    let data = localStorage.getItem('students');
+    if (data) {
+      setStudents(JSON.parse(data));
     }
+  }, []);
 
-    const addNewTodo = (newTodo) => {
-        setTodosAr([...todos_ar, newTodo])
-        localStorage.setItem('todos_ar', JSON.stringify([...todos_ar, newTodo]))
-    }
+  const removeStudent = (id) => {
+    let student = students.find((student) => student.id === id);
+    let answer = window.confirm(`Are you sure you want to remove ${student.name} from the list?`);
+    if (!answer) return;
+    setStudents(students.filter((student) => student.id !== id));
+  }
 
-    const deleteTodo = (id) => {
-        const newTodos = todos_ar.filter((todo) => todo.id !== id)
-        setTodosAr(newTodos)
-        localStorage.setItem('todos_ar', JSON.stringify(newTodos))
-    }
+  const globalValue = {
+    students, addStudent, removeStudent
+  }
 
-    const resetList = () => {
-        if (window.confirm('Are you sure to reset the list?')) {
-            setTodosAr([])
-            localStorage.setItem('todos_ar', JSON.stringify([]))
-        }
-    }
-
-    const contextValue = {
-        todos_ar, showEdit, currentTodoEdit, setCurrentTodoEdit, addNewTodo, deleteTodo, resetList, toggleEdit
-    }
-
-    return (
-        <AppContext.Provider value={contextValue}>
-            {children}
-        </AppContext.Provider>
-    )
-}
+  return (
+    <AppContext.Provider value={globalValue}>
+      {props.children}
+    </AppContext.Provider>
+  )
+} 
