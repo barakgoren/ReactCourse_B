@@ -14,6 +14,9 @@ export default function Header1() {
               <li><Link to="/">Home</Link></li>
               <li><Link to="/gallery">Gallery</Link></li>
               <li><Link to="/todo">To Do</Link></li>
+              <li><Link to="/form1">Form1</Link></li>
+              <li><Link to="/icons">Icons</Link></li>
+              <li><Link to="/map">Map</Link></li>
             </ul>
           </nav>
         </div>

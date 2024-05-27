@@ -5,6 +5,9 @@ import Gallery from "./pages/Gallery";
 import Header1 from "./components/Header1";
 import TodoPage from "./pages/TodoPage";
 import ContextProvider from "./context/Context";
+import Form1 from "./pages/Form1";
+import Icons from "./pages/Icons";
+import MapPage from "./pages/MapPage";
 
 
 
@@ -19,6 +22,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/todo" element={<TodoPage />} />
+          <Route path="/form1" element={<Form1 />} />
+          <Route path="/icons" element={<Icons />} />
+          <Route path="/map" element={<MapPage />} />
         </Routes>
       </BrowserRouter>
     </ContextProvider>

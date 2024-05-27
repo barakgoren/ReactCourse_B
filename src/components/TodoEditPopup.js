@@ -1,16 +1,27 @@
 import React, { useContext, useRef } from 'react'
 import { AppContext } from '../context/Context';
 export default function TodoEditPopup() {
-    const {toggleEdit, currentTodoEdit} = useContext(AppContext);
+    const {toggleEdit, currentTodoEdit, updateTodo} = useContext(AppContext);
 
     const nameRef = useRef();
     const timeRef = useRef();
+
+    const onSub = (e) => {
+        e.preventDefault();
+        const editItem ={
+            name: nameRef.current.value,
+            time: timeRef.current.value,
+            id: currentTodoEdit.id
+        }
+        updateTodo(editItem, currentTodoEdit.id);
+        toggleEdit();
+    }
 
     return (
         <div className='dark_edit'>
             <div className='dark_box_edit'>
                 <h2 className='text-center'>Edit form</h2>
-                <form>
+                <form onSubmit={onSub}>
                     <label>Name:</label>
                     <input defaultValue={currentTodoEdit.name} ref={nameRef} type="text" className='form-control' />
                     <label>Time:</label>

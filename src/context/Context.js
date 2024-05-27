@@ -35,8 +35,20 @@ export default function ContextProvider({ children }) {
         }
     }
 
+    const updateTodo = (editItem, id) => {
+        const newTodos = todos_ar.map((todo) => {
+            if (todo.id === id) {
+                return editItem
+            }
+            return todo
+        })
+        setTodosAr(newTodos);
+        localStorage.setItem('todos_ar', JSON.stringify(newTodos));
+    }
+
     const contextValue = {
-        todos_ar, showEdit, currentTodoEdit, setCurrentTodoEdit, addNewTodo, deleteTodo, resetList, toggleEdit
+        todos_ar, showEdit, currentTodoEdit,
+        setCurrentTodoEdit, addNewTodo, deleteTodo, resetList, toggleEdit, updateTodo
     }
 
     return (
