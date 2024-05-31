@@ -8,6 +8,7 @@ import ContextProvider from "./context/Context1";
 import Form1 from "./pages/Form1";
 import Icons from "./pages/Icons";
 import MapPage from "./pages/MapPage";
+import HwForm from "./pages/HwForm";
 
 
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/form1" element={<Form1 />} />
           <Route path="/icons" element={<Icons />} />
           <Route path="/map" element={<MapPage />} />
+          <Route path="/hw" element={<HwForm />} />
 
         </Routes>
 
