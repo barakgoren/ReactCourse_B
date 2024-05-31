@@ -1,35 +1,22 @@
-import { AdvancedMarker, APIProvider, InfoWindow, Map } from '@vis.gl/react-google-maps'
-import React, { useState } from 'react'
+import React from 'react'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 export default function MapPage() {
-  const [open, setOpen] = useState(false)
-  const position = { lat: 32.10346315558545, lng: 35.207447010456065 }
-  const infoPosition = { lat: 32.1038, lng: 35.207447010456065 }
   return (
-    <div>
-      <div className="container d-flex justify-content-center">
-        <APIProvider apiKey={"AIzaSyAXuw0e1BzIxlOUx2JCCbhCOlKcgybnSSo"}>
-          <div className='border border-dark border-2 mt-5' style={{height:'80vh', width:'80vw'}}>
-            <Map
-              defaultCenter={position}
-              defaultZoom={17}
-              gestureHandling={'greedy'}
-              disableDefaultUI={true}
-              mapId={'d78994b48117b2d5'}
-            >
-              <AdvancedMarker position={position} onClick={() => setOpen(!open)}>
-
-              </AdvancedMarker>
-              {open && <InfoWindow position={infoPosition} onCloseClick={() => setOpen(!open)}>
-                <div>
-                  <h5>My Marker</h5>
-                  <p>My Marker is awesome</p>
-                </div>
-              </InfoWindow>}
-            </Map>
-          </div>
-        </APIProvider>
-      </div>
+    <div className='container'>
+      <h1>Map test</h1>
+      <MapContainer center={[31.93, 34.75]} zoom={7} scrollWheelZoom={true}>
+        <Marker key={"11"} position={[32.18662999435766, 34.87001772884094]} />
+        <Marker key={"12"} position={[31.905165479672824, 34.80944034151415]} />
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        />
+      </MapContainer>
     </div>
   )
 }
+
+// חוברת עופר עמוד 31,32 הסבר שימוש במפה
+// ותהליך שצריך לעשות לפני בשביל שימוש
+// https://docs.google.com/document/d/1oJ0HgQ9VsWJFPA0SW1vKUh2VnZkvoIHv/edit
