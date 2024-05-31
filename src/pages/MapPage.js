@@ -1,6 +1,5 @@
-import { AdvancedMarker, APIProvider, InfoWindow, Map, Marker } from '@vis.gl/react-google-maps'
+import { AdvancedMarker, APIProvider, InfoWindow, Map } from '@vis.gl/react-google-maps'
 import React, { useState } from 'react'
-import FatmapEmbed from '../components/FatMapEmbed'
 
 export default function MapPage() {
   const [open, setOpen] = useState(false)
@@ -30,9 +29,6 @@ export default function MapPage() {
             </Map>
           </div>
         </APIProvider>
-        {/* <div style={{height:'20vh', width:'10vw', display:'flex'}} id='working-on-it' className='bg-danger'>
-          <FatmapEmbed type="adventure" id="61999" animation="rotate" />
-        </div> */}
       </div>
     </div>
   )
