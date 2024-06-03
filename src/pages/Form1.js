@@ -27,7 +27,7 @@ export default function Form1() {
         <input {...register("phone",{required:true, minLength:9})} type='text' className='form-control' />
         {errors.phone && <div className='text-danger'>* Enter valid Phone (min 9 chars)</div>}
         <label>Enter Phone again:</label>
-        <input {...register("phone2",{required:true, validate:(val) => val == getValues("phone")})} type='text' className='form-control' />
+        <input {...register("phone2",{required:true, validate:(val) => val === getValues("phone")})} type='text' className='form-control' />
         {errors.phone2 && <div className='text-danger'>* Phones inputs not match</div>}
         <label>Email:</label>
         <input {...register("email",{required:true, pattern:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i})} type='text' className='form-control' />

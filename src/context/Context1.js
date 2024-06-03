@@ -35,14 +35,14 @@ export default function ContextProvider({ children }) {
   }
 
   const deleteTodo = (_id) => {
-    const filter_ar = todos_ar.filter(item => item.id != _id);
+    const filter_ar = todos_ar.filter(item => item.id !== _id);
     setTodosAr(filter_ar)
     localStorage.setItem("todos_ar", JSON.stringify(filter_ar))
   }
 
   const updateTodo = (_editItem, _id) => {
     const map_ar = todos_ar.map(item => {
-      if (item.id == _id) {
+      if (item.id === _id) {
         return _editItem
       }
       return item;
