@@ -12,3 +12,17 @@ header nav ul a{
   padding:0 8px;
   text-decoration: none;
 }
+
+.favorite-star path {
+  stroke: rgb(0, 0, 0);
+  stroke-width: 35px;
+}
+
+.favorite-star {
+  color: rgba(187, 187, 187, 0.649);
+}
+
+.favorite-star:hover {
+  cursor: pointer;
+  color: rgba(233, 217, 124, 0.663);
+}
