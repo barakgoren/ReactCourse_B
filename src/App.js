@@ -3,6 +3,7 @@ import './App.css';
 import Home from "./pages/Home";
 import TopBar from "./components/TopBar";
 import { AppProvider } from "./Context/AppContext";
+import Favorites from "./pages/Favorites";
 
 
 
@@ -15,6 +16,7 @@ function App() {
         <TopBar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </BrowserRouter>
     </AppProvider>

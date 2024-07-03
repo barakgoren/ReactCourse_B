@@ -19,10 +19,24 @@ header nav ul a{
 }
 
 .favorite-star {
+  transition: color 0.7s;
   color: rgba(187, 187, 187, 0.649);
+}
+
+.favorite-star-selected path {
+  stroke: rgb(0, 0, 0);
+  stroke-width: 35px;
+}
+
+.favorite-star-selected {
+  color: rgb(255, 217, 0);
+}
+
+.favorite-star-selected:hover {
+  cursor: pointer;
 }
 
 .favorite-star:hover {
   cursor: pointer;
-  color: rgba(233, 217, 124, 0.663);
+  color: rgb(233, 217, 124);
 }

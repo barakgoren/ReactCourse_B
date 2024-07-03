@@ -5,10 +5,16 @@ export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
     const [workers, setWorkers] = useState([]);
+    const [favorites, setFavorites] = useState([]);
 
     useEffect(() => {
         fetchWorkers('abc');
     }, []);
+
+    // TODO: Remove this useEffect after testing (AppContext.js)
+    useEffect(() => {
+        console.log(favorites);
+    }, [favorites]);
 
     const fetchWorkers = async (compnayName) => {
         try {
@@ -20,8 +26,20 @@ export const AppProvider = ({ children }) => {
         }
     }
 
+    const toggleFavorite = (worker) => {
+        if (favorites.find(favorite => favorite.login.username === worker.login.username)) {
+            const newFavorites = favorites.filter(favorite => favorite.login.username !== worker.login.username);
+            setFavorites(newFavorites);
+            localStorage.setItem('favorites', JSON.stringify(newFavorites));
+        }
+        else {
+            setFavorites([...favorites, worker]);
+            localStorage.setItem('favorites', JSON.stringify([...favorites, worker]));
+        }
+    }
+
     const globalValue = {
-        workers,
+        workers, favorites, toggleFavorite
     };
 
     return (
