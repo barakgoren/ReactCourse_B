@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { baseUrl } from '../api';
 import { toast } from 'react-toastify';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Button, Spin } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
+import { AppContext } from '../Context/AppContext';
+import { FaStar } from 'react-icons/fa';
 
 export default function MoreInfo() {
+    const { favorites, toggleFavorite } = useContext(AppContext);
     const [query] = useSearchParams();
     const [user, setUser] = useState({});
+    const [isWorkerFavorited, setIsWorkerFavorited] = useState(false);
     const [coords, setCoords] = useState([0, 0]);
     const nav = useNavigate();
     // Company can be null
@@ -19,7 +23,7 @@ export default function MoreInfo() {
         // Fetch user data
         fetchUser();
         // eslint-disable-next-line
-    }, []);
+    }, [favorites]);
 
     const fetchUser = async () => {
         try {
@@ -29,6 +33,7 @@ export default function MoreInfo() {
             let lat = Number(data.results[index].location.coordinates.latitude);
             let long = Number(data.results[index].location.coordinates.longitude);
             setCoords([lat, long]);
+            setIsWorkerFavorited(favorites.some(favWorker => favWorker.login.username === data.results[index].login.username));
         } catch (error) {
             toast.error('Error fetching user data');
         }
@@ -36,8 +41,11 @@ export default function MoreInfo() {
 
     return (
         <div>
-            <div className='position-fixed px-5'>
-                <Button icon={<ArrowLeftOutlined />} onClick={() => nav(-1)} type='default' size='large' className='my-3'/>
+            <div className='position-fixed d-flex w-100 justify-content-between align-items-center px-5'>
+                <Button icon={<ArrowLeftOutlined />} onClick={() => nav(-1)} type='default' size='large' className='my-3' />
+                <div onClick={() => toggleFavorite(user)} style={{ zIndex: 1 }} className='p-1'>
+                    <FaStar className={`${isWorkerFavorited ? 'favorite-star-selected' : 'favorite-star'} fs-1`} />
+                </div>
             </div>
             {user.login ?
                 <div className='container d-flex flex-column align-items-center'>

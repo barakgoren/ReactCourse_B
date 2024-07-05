@@ -4,19 +4,27 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Button, Spin } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { AppContext } from '../Context/AppContext';
+import { FaStar } from 'react-icons/fa';
 
 export default function MoreInfoFav() {
-    const { favorites } = useContext(AppContext);
+    const { favorites, toggleFavorite } = useContext(AppContext);
     const [query] = useSearchParams();
     const nav = useNavigate();
     let index = query.get('index');
     const user = favorites[index];
+    const isWorkerFavorited = favorites.some(favWorker => favWorker.login.username === user.login.username);
     let coords = [Number(user.location.coordinates.latitude), Number(user.location.coordinates.longitude)];
 
     return (
-        <div style={{ backgroundColor: '#a5c6e7', height:'93vh' }}>
-            <div className='position-fixed px-5'>
+        <div style={{ backgroundColor: '#a5c6e7', height: '93vh' }}>
+            <div className='position-fixed d-flex w-100 justify-content-between align-items-center px-5'>
                 <Button icon={<ArrowLeftOutlined />} onClick={() => nav(-1)} type='default' size='large' className='my-3' />
+                <div onClick={() => {
+                    toggleFavorite(user);
+                    nav(-1);
+                }} style={{ zIndex: 1 }} className='p-1'>
+                    <FaStar className={`${isWorkerFavorited ? 'favorite-star-selected' : 'favorite-star'} fs-1`} />
+                </div>
             </div>
             {user.login ?
                 <div className='container d-flex flex-column align-items-center'>
