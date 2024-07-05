@@ -2,12 +2,11 @@ import React, { useContext } from 'react'
 import { FaStar } from 'react-icons/fa'
 import { AppContext } from '../Context/AppContext';
 import { Button, ConfigProvider } from 'antd';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-export default function EmployeeCard({ worker }) {
-    const { favorites, toggleFavorite, workers } = useContext(AppContext);
+export default function EmployeeFavCard({ worker }) {
+    const { favorites, toggleFavorite } = useContext(AppContext);
     const nav = useNavigate();
-    const [query] = useSearchParams();
     const isWorkerFavorited = favorites.some(favWorker => favWorker.login.username === worker.login.username);
     function truncateText(text) {
         if (text.length > 15) {
@@ -16,13 +15,11 @@ export default function EmployeeCard({ worker }) {
         return text;
     }
     const moreInfoNav = () => {
-        let company = query.get('search');
-        if (!company) company = 'abc';
-        nav(`/employee?company=${company}&index=${workers.indexOf(worker)}`);
+        nav(`/favs/employee?index=${favorites.indexOf(worker)}`);
     }
 
     return (
-        <div style={{ width: '16rem', height: '23rem' }} className='card rounded-3 mx-2 overflow-hidden my-2'>
+        <div style={{ width: '16rem', height: '23rem', backgroundColor:'#a5c6e7' }} className='card rounded-3 mx-2 overflow-hidden my-2'>
             <div style={{ position: 'relative', height: '13rem' }} className='card-header d-flex p-0'>
                 <img src={worker.picture.large} alt='worker' style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0 }} />
                 <div onClick={() => toggleFavorite(worker)} style={{ zIndex: 1 }} className='p-1'>

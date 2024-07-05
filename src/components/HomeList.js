@@ -7,7 +7,7 @@ export default function HomeList() {
     return (
         <div className='my-4'>
             <div className='d-flex px-2 justify-content-center flex-wrap'>
-                {workers.map(worker => <EmployeeCard key={worker.login.username} worker={worker} />)}
+                {workers.map((worker, index) => <EmployeeCard key={worker.login.username} worker={worker} />)}
             </div>
         </div>
     )
