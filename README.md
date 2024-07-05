@@ -1,3 +1,6 @@
+[![wakatime](https://wakatime.com/badge/user/5cc5ec80-a806-4ca2-a704-db29274e48cd/project/018e9932-55a7-4df9-b94f-46db67efcc77.svg)](https://wakatime.com/badge/user/5cc5ec80-a806-4ca2-a704-db29274e48cd/project/018e9932-55a7-4df9-b94f-46db67efcc77)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/barakgoren/ReactCourse_B/finalTask)
+![GitHub top language](https://img.shields.io/badge/Status-Done-lightgreen)
 
 
 <img src="public/strip.jpg" alt="App Screenshot" width="100%" height="200px"/>
